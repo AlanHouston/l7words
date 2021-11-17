@@ -43,24 +43,6 @@ export default function Landing() {
         }
     }
 
-    // const getTextData = () => {
-    //     let textArr = text.split(' ');
-    //     setWordCount(textArr.length);
-    //     setHaveData(true);
-    //     textArr.forEach(e => {
-    //         let l = e.replace(/[^a-zA-Z]/g,"").length;
-    //         let objPos = l.toString();
-    //         if (objPos <= 20 && objPos != 0) {
-    //             lengthDist[objPos]++
-    //         } else if (objPos > 20) {
-    //             lengthDist['20+']++
-    //         }
-    //         //tackle edge case where dash-separated words get combined into one word
-    //     })
-    //     // console.log('ending landing');
-    //     // console.log(lengthDist);
-    // }
-
     const getTextData = () => {
         let textArr = text.split(' ');
         setWordCount(textArr.length);
@@ -75,11 +57,12 @@ export default function Landing() {
                 setLengthDist(lengthDist[20]+=1)
                 // lengthDist['20+']++
             }
+            setUseArray(lengthDist);
             //tackle edge case where dash-separated words get combined into one word
         })
         // console.log('ending landing');
         // console.log(lengthDist);
-        setUseArray(lengthDist);
+        // setUseArray(lengthDist);
         console.log('ending getTextDataFunc');
         console.log(useArray);
     }
@@ -102,7 +85,8 @@ export default function Landing() {
                     <section >
                         {loading === false ? (
                             <>
-                                <button onClick={() => {fetchStory()}}>Give me some text from the API, please</button>
+                                <h2>Please choose a method for importing text:</h2>
+                                <button onClick={() => {fetchStory()}}>Fetch text from API</button>
                                 <div><textarea id="copiedText" maxLength="2000" onChange={e => {handleTextAreaChange(e)}}></textarea></div>
                                 <button onClick={() => {submitTextAreaValue()}}>Use the text I have provided</button>
                             </>
@@ -112,7 +96,7 @@ export default function Landing() {
                     </section>
                 ) : (
                     <section>
-                        <div>{text}</div>
+                        <div id="selectedText">{text}</div>
                         {haveData === false ? (
                             <button onClick={() => {getTextData()}}>Calculate the data, please</button>
                         ) : (
@@ -123,7 +107,9 @@ export default function Landing() {
                                         <h3>{wordCount} Words</h3>
                                         <button onClick={() => {showDistribution()}}>Show me the distribution, please</button>
                                     </>
-                                    ) : <Chart lengthDist={useArray}/>
+                                    ) : (
+                                        <Chart lengthDist={useArray}/>
+                                    )
                                 }
                             </div>
                         )}

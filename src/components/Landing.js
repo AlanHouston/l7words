@@ -10,10 +10,12 @@ export default function Landing() {
     const [haveData, setHaveData] = useState(false);
     const [preCalculation, setPreCalculation] = useState(true);
     let textAreaInput = '';
-    const lengthDist = 
-        {
-            '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, '8': 0, '9': 0, '10': 0, '11': 0, '12': 0, '13': 0, '14': 0, '15': 0, '16': 0, '17': 0, '18': 0, '19': 0, '20': 0, '20+': 0
-        }
+    const [lengthDist, setLengthDist] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]);
+    const [useArray, setUseArray] = useState([]);
+    // let lengthDist = 
+    //     {
+    //         '1': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, '8': 0, '9': 0, '10': 0, '11': 0, '12': 0, '13': 0, '14': 0, '15': 0, '16': 0, '17': 0, '18': 0, '19': 0, '20': 0, '20+': 0
+    //     }
     
 
     const fetchStory = () => {
@@ -34,9 +36,30 @@ export default function Landing() {
     }
 
     const submitTextAreaValue = () => {
-        // e.preventDefault();
-        setText(textAreaInput);
+        if (textAreaInput.search(/[^a-zA-Z]/g)){
+            setText(textAreaInput);
+        } else {
+            alert('Please enter some letters');
+        }
     }
+
+    // const getTextData = () => {
+    //     let textArr = text.split(' ');
+    //     setWordCount(textArr.length);
+    //     setHaveData(true);
+    //     textArr.forEach(e => {
+    //         let l = e.replace(/[^a-zA-Z]/g,"").length;
+    //         let objPos = l.toString();
+    //         if (objPos <= 20 && objPos != 0) {
+    //             lengthDist[objPos]++
+    //         } else if (objPos > 20) {
+    //             lengthDist['20+']++
+    //         }
+    //         //tackle edge case where dash-separated words get combined into one word
+    //     })
+    //     // console.log('ending landing');
+    //     // console.log(lengthDist);
+    // }
 
     const getTextData = () => {
         let textArr = text.split(' ');
@@ -45,16 +68,26 @@ export default function Landing() {
         textArr.forEach(e => {
             let l = e.replace(/[^a-zA-Z]/g,"").length;
             let objPos = l.toString();
-            if (objPos <= 20) {
-                lengthDist[objPos]++
-            } else lengthDist['20+']++
+            if (objPos <= 20 && objPos != 0) {
+                setLengthDist(lengthDist[objPos-1]+=1)
+                // lengthDist[objPos]++
+            } else if (objPos > 20) {
+                setLengthDist(lengthDist[20]+=1)
+                // lengthDist['20+']++
+            }
             //tackle edge case where dash-separated words get combined into one word
         })
-        console.log(lengthDist)
+        // console.log('ending landing');
+        // console.log(lengthDist);
+        setUseArray(lengthDist);
+        console.log('ending getTextDataFunc');
+        console.log(useArray);
     }
 
     const showDistribution = () => {
         setPreCalculation(false);
+        console.log('showDistribution:');
+        console.log(lengthDist);
     }
 
     const startOver = () => {
@@ -90,7 +123,7 @@ export default function Landing() {
                                         <h3>{wordCount} Words</h3>
                                         <button onClick={() => {showDistribution()}}>Show me the distribution, please</button>
                                     </>
-                                    ) : <Chart />
+                                    ) : <Chart lengthDist={useArray}/>
                                 }
                             </div>
                         )}

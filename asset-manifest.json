@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/l7words/static/css/main.581dbaf5.chunk.css",
+    "main.js": "/l7words/static/js/main.81a21a25.chunk.js",
+    "main.js.map": "/l7words/static/js/main.81a21a25.chunk.js.map",
+    "runtime-main.js": "/l7words/static/js/runtime-main.4b67d929.js",
+    "runtime-main.js.map": "/l7words/static/js/runtime-main.4b67d929.js.map",
+    "static/css/2.383c0125.chunk.css": "/l7words/static/css/2.383c0125.chunk.css",
+    "static/js/2.307310d9.chunk.js": "/l7words/static/js/2.307310d9.chunk.js",
+    "static/js/2.307310d9.chunk.js.map": "/l7words/static/js/2.307310d9.chunk.js.map",
+    "static/js/3.4991f245.chunk.js": "/l7words/static/js/3.4991f245.chunk.js",
+    "static/js/3.4991f245.chunk.js.map": "/l7words/static/js/3.4991f245.chunk.js.map",
+    "index.html": "/l7words/index.html",
+    "static/css/2.383c0125.chunk.css.map": "/l7words/static/css/2.383c0125.chunk.css.map",
+    "static/css/main.581dbaf5.chunk.css.map": "/l7words/static/css/main.581dbaf5.chunk.css.map",
+    "static/js/2.307310d9.chunk.js.LICENSE.txt": "/l7words/static/js/2.307310d9.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4b67d929.js",
+    "static/css/2.383c0125.chunk.css",
+    "static/js/2.307310d9.chunk.js",
+    "static/css/main.581dbaf5.chunk.css",
+    "static/js/main.81a21a25.chunk.js"
+  ]
+}
